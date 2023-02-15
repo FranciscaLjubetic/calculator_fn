@@ -84,37 +84,100 @@ const mathOperation = (number1, operator, number2) => {
 
 //     operationsOrdering(reducingArray)
 // }
-const reducingOneSign = (arr, sign) => {
-    console.log(arr[0], arr[1])
-    // let array = [];
-    // array.push.apply(arr);
-    // console.log('array', array);
-    const array = Array.from(arr);
-    const ps = array.indexOf(sign);
-    console.log('ps', ps);
-    const newArray = [];
-    let num = 0;
-    if(ps == -1 ){ return array; }
-    else {
-        num = mathOperation(array[ps-1], sign, array[ps+1]);
-        newArray.push.apply(array.splice(0, ps-1));
-        newArray.push(num);
-        newArray.push.apply(array.slice(ps+1));
+function reducingOneSign(array, sign) {
+    const len= array.length;
+    const ps =array.indexOf(sign);
+    const num = mathOperation(array[ps-1], sign, array[ps+1]);
+    if(len == 1) { return; }
+    else if(ps == -1 ){ 
+        console.log('resultado de reducing', array, typeof array);
+        return [...array]; 
     }
-    reducingOneSign(newArray);
+    console.log(num, 'dentro del signo' ,sign);
+    console.log(array)
+    console.log(array[0])
+    console.log('array', array);
+    console.log('ps', ps);
+    const firstPart = [...array.splice(0, ps-1)];
+    console.log('firstpart', firstPart);
+    const secondPart = [...array.slice(ps+2)];
+
+    const resultado = [ ...firstPart, num, ...secondPart];
+    console.log(resultado);
+
+
+    
+
+    // if(ps-1 == 0 && len-ps > 1){ 
+    //     // secondPart.push.apply(array.slice(ps+2));
+    //     console.log('secondpart', secondPart);
+    //     console.log('num',num);
+    //     newArray.push(num);
+    //     newArray.push.apply(secondPart);
+    //     // newArray.push(num);
+    //     // console.log('con num', newArray);
+    //     // newArray.push.apply(array.splice(ps+2));
+    //     // console.log('como queda este newArray con num', newArray);
+
+    // }
+    
+    // if(ps-1 > 0 && len-ps == 1 ){
+    //     // firstPart.push.apply(array.splice(0, ps-1));
+    //     console.log(firstPart);
+    //     console.log('num',num);
+    //     newArray.push.apply(firstPart);
+    //     newArray.push(num);
+    //     // newArray.push.apply();
+    //     // newArray.push(num);
+    // }
+
+    // else {
+    //     newArray.push.apply(firstPart); 
+    //     console.log('con primera parte', newArray);
+    //     console.log('num',num);
+    //     newArray.push(num);
+    //     console.log('con num', newArray);
+    //     newArray.push.apply(secondPart);
+    //     console.log('lo que haiga atras', newArray);
+    // }
+    
+    // console.log('como queda new array', newArray);
+    
+    reducingOneSign(resultado, sign);
 }
 
 const operationsOrdering = (arr) => {
+    let multi = [];
+    let div = [];
+    let plus = []; 
+    let rest = []; 
+    let len = arr.length;
 
+    console.log(len);
     console.log('que vergas entra', arr, typeof arr, arr[0], arr[1]);
+    console.log('con *')
 
-    let multi = reducingOneSign(arr, '*');
-    let div = reducingOneSign(multi, '/');
-    let plus = reducingOneSign(div, '+');
-    let rest = reducingOneSign(plus, '-');
-    console.log(rest, 'rest');
-    return rest;
     
+        // multi = [...reducingOneSign([...arr], '*')];
+        // console.log('con /')
+        // div = [...reducingOneSign([...multi], '/')];
+        // console.log('con +')
+        // plus = [...reducingOneSign([...div], '+')];
+        // console.log('con -')
+        // rest = [...reducingOneSign([...plus], '-')];
+        // console.log(rest, 'rest');
+        // return rest;   
+
+
+        multi = reducingOneSign([...arr], '*');
+        console.log('con /')
+        div = reducingOneSign([...multi], '/');
+        console.log('con +')
+        plus = reducingOneSign([...div], '+');
+        console.log('con -', plus)
+        rest = reducingOneSign([...plus], '-');
+        console.log(rest, 'rest');
+        return rest;   
 }
  
 document.querySelectorAll('.yellow').forEach(button => {
@@ -196,6 +259,7 @@ document.querySelectorAll('.purple').forEach(button => {
                 // console.log('number1_after_operator', number1)
                 // console.log('number2_after_operator', number2)
                 // console.log('operator_after_operator', number2)
+                console.log('terms array at operator', termsArray);
 
                 rinseWell();
             }
@@ -206,8 +270,9 @@ equals.addEventListener("click", () => {
     screen.className= '';
     number2 = Number(screen.textContent);
     termsArray.push(number2);
-    
-    // let result = (number1 && operator && number2!=0)? controlDecimals(mathOperation(number1, operator, number2)): 'invalid operation';
+    const len = termsArray.length
+    // let result = (len <= 3)? ((number1 && operator && number2!=0)? controlDecimals(mathOperation(number1, operator, number2)): 'invalid operation'):
+    //(operationsOrdering(Array.from(termsArray))[0]);
     const ArRaY = Array.from(termsArray);
     let result = operationsOrdering(ArRaY)[0];
     if(isNaN(result)){ screen.className= 'smaller_font';}
@@ -217,7 +282,7 @@ equals.addEventListener("click", () => {
     // console.log('screen_after_equals', screen.textContent);
     // console.log('number1_after_equals', number1);
     // console.log('number2_after_equals', number2);
-    // console.log('terms array at equals', termsArray);
+    console.log('terms array at equals', termsArray);
     // console.log('result', result);
 });
 
