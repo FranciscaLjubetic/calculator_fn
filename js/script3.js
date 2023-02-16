@@ -36,7 +36,7 @@ const reset = () => {
     number1 = 0;
     number2 = 0;
     inputsString=[];
-    termsArray.forEach(()=> termsArray.pop());
+    inputsString=[];
 };
 
 
@@ -65,7 +65,7 @@ const mathOperation = (number1, operator, number2) => {
 const  reducingOneSign = (array, sign) => {
    
     const len= [...array].length;
-    if(len <= 2) { console.log(len, 'len'); return [...array]; };
+    if(len <= 2) { console.log(len, 'len'); return; };
     const ps =array.indexOf(sign);
    
     if(len <= 1 || ps == -1 || (typeof sign) == undefined){ 
@@ -73,9 +73,7 @@ const  reducingOneSign = (array, sign) => {
         const resultingArray = [];
         array.forEach((item) => resultingArray.push(item))
         console.log('resultadin', resultingArray, resultingArray[0])
-        
-        return  [...resultingArray]; 
-        
+        return  resultingArray; 
     }
     const num = mathOperation(array[ps-1], sign, array[ps+1]);
     const firstPart = [...array.slice(0, ps-1)];
@@ -83,88 +81,83 @@ const  reducingOneSign = (array, sign) => {
     const resultado = [...firstPart, num, ...secondPart];
 
 
+
     console.log(num, 'dentro del signo' ,sign);
     console.log('array', array);
     console.log('ps', ps);
+    
     console.log('firstpart', firstPart);
+  
     console.log('segunda parte', secondPart);
+
+   
     console.log(resultado);
+
 
     reducingOneSign([...resultado], sign);
-    
 }
 
-const reduceSign = (array2, sign) => {
-    // const array = array2;
-    // const len= array.length;
-    // const ps =array.indexOf(sign);
-    // if(ps ==-1 || array2.length <=1) { console.log(len, 'len'); return array;}
+
+// const  reducingOneSign = (array, sign) => {
     
-    // const secondPart = [...array.slice(ps+2, len)];
-    // const num = mathOperation(array[ps-1], sign, array[ps+1]);
-    // const firstPart = [...array.slice(0, ps-1)];
-    // const resultado = [...firstPart, num, ...secondPart];
-    // reduceSign(resultado, sign)
-
+//     const len= [...array].length;
+//     const ps =array.indexOf(sign);
    
-    // const array = array2;
-    // const len= array.length;
-    // if(len <= 2) { console.log(len, 'len'); return; };
-    // const ps =array.indexOf(sign);
-   
-    // if(len <= 1 || ps == -1 || (typeof sign) == undefined){ 
-    //     console.log('hostia tio, no envuelvo ni mierda', 'len', len, array, typeof [...array])
-    //     const resultingArray = [];
-    //     array.forEach((item) => resultingArray.push(item))
-    //     console.log('resultadin', resultingArray, resultingArray[0])
-    //     return  resultingArray; 
-    // }
-    // const num = mathOperation(array[ps-1], sign, array[ps+1]);
-    // const firstPart = [...array.slice(0, ps-1)];
-    // const secondPart = [...array.slice(ps+2, len)];
-    // const resultado = [...firstPart, num, ...secondPart];
+//     if(len == 1){ return [...array];}
+//     else if(ps == -1){ 
+//         console.log('hostia tio, no envuelvo ni mierda', array, typeof array)
+//         return [...array]; 
+//     }
+//     const num = mathOperation(array[ps-1], sign, array[ps+1]);
+//     console.log(num, 'dentro del signo' ,sign);
+//     console.log(array)
+//     console.log('array', array);
+//     console.log('ps', ps);
+//     const firstPart = [...array.splice(0, ps-1)];
+//     console.log('firstpart', firstPart);
+//     const secondPart = [...array.splice(ps+2, len-1)];
+//     console.log('segunda parte', secondPart);
+
+//     const resultado = [...firstPart, num, ...secondPart];
+//     console.log(resultado);
 
 
-    // console.log(num, 'dentro del signo' ,sign);
-    // console.log('array', array);
-    // console.log('ps', ps);
-    // console.log('firstpart', firstPart);
-    // console.log('segunda parte', secondPart);
-    // console.log(resultado);
-
-    // reduceSign(array, sign)
-
-    const array = array2;
-    const len= array.length;
+//     reducingOneSign(resultado, sign);
+// }
 
 
-    const ps =array.indexOf(sign);
-    if(len <= 2 || ps == -1 || (typeof sign) == undefined) { console.log(len, 'len'); return array2;};
-    const versions = [];
-    while ( ps != -1){
-        const ps = array.indexOf(sign);
-        const num = mathOperation(array[ps-1], sign, array[ps+1]);
-        const firstPart = [...array.slice(0, ps-1)];
-        const secondPart = [...array.slice(ps+2, len)];
-        const resultado = [...firstPart, num, ...secondPart];
-        versions.push(resultado);
-        array = [...resultado]
-    }
+
+
+// const  reducingOneSign = (array, sign) => {
+//     let justToCount = 0;
+//     justToCount+=1;
+//     const len= [...array].length;
+//     console.log('cuenta por conchetumare',justToCount, len);
     
+//     const ps =array.indexOf(sign);
+//     console.log('ps', ps)
+   
+//     if(ps == -1 || len == 1 ){ 
+//         console.log('resultado de reducing', array, typeof array);
+//         console.log('hostia tio, no envuelvo ni mierda', typeof array)
+//         console.log(array[0]);
+//         return [...array]; 
+//     }
+//     const num = mathOperation(array[ps-1], sign, array[ps+1]);
+//     console.log(num, 'dentro del signo' ,sign);
+//     console.log(array)
+//     console.log('array', array);
+//     console.log('ps', ps);
+//     const firstPart = [...array.splice(0, ps-1)];
+//     console.log('firstpart', firstPart);
+//     const secondPart = [...array.splice(ps+2, len-1)];
+//     console.log('segunda parte', secondPart);
+
+//     const resultado = [ ...firstPart, num, ...secondPart];
+//     console.log(resultado);
 
 
-    console.log(num, 'dentro del signo' ,sign);
-    console.log('array', array);
-    console.log('ps', ps);
-    console.log('firstpart', firstPart);
-    console.log('segunda parte', secondPart);
-    console.log(resultado);
-    return versions[ versions.length -1];
-
-}
-
-// const usingJavascriptPrecedenceItself = (array) => {
-    // eval is forbiden
+//     reducingOneSign(resultado, sign);
 // }
 
 const operationsOrdering = (arr) => {
@@ -173,16 +166,13 @@ const operationsOrdering = (arr) => {
     let plus = []; 
     let rest = []; 
     let len = [...arr].length;
-    
 
     console.log('largo inicial de la verga', len);
     console.log('que vergas entra', arr, typeof arr, arr[0], arr[1]);
-    // console.log('con *')
-    
+    console.log('con *')
 
-       rest = reducingOneSign([...arr], '+');
-        // rest = [...reducingOneSign([...reducingOneSign([...reducingOneSign([...reducingOneSign([...arr], '*')], "/")], '+')], '-')];
-        
+       
+        rest = [...reducingOneSign([...reducingOneSign([...reducingOneSign([...reducingOneSign([...arr], '*')], '/')], '+')], '-')];
         console.log(rest, 'rest');
         return rest;   
 
@@ -203,7 +193,33 @@ const operationsOrdering = (arr) => {
 
 
 
+// const operationsOrdering = (arr) => {
+//     let multi = [];
+//     let div = [];
+//     let plus = []; 
+//     let rest = []; 
+//     let len = [...arr].length;
 
+//     console.log('largo inicial de la verga', len);
+//     console.log('que vergas entra', arr, typeof arr, arr[0], arr[1]);
+//     console.log('con *')
+
+  
+
+//         multi = reducingOneSign(arr, '*');
+//         console.log(multi, 'resultado de *');
+//         console.log('con /')
+//         div = reducingOneSign(multi, '/');
+//         console.log(div, 'resultado de /');
+//         console.log('con +')
+//         plus = reducingOneSign(div, '+');
+//         console.log(plus, 'resultado de +');
+//         console.log('impresion final plus', plus);
+//         console.log('con -', plus)
+//         rest = reducingOneSign(plus, '-');
+//         console.log(rest, 'rest');
+//         return rest;   
+// }
  
 document.querySelectorAll('.yellow').forEach(button => {
     screen.className= '';
@@ -281,7 +297,7 @@ equals.addEventListener("click", () => {
     //(operationsOrdering(Array.from(termsArray))[0]);
     const ArRaY = Array.from(termsArray);
     let result = operationsOrdering(ArRaY);
-    console.log('result', result)
+    console.log('result', result[0])
     if(isNaN(result)){ screen.className= 'smaller_font';}
     screen.textContent = (isNaN(result) && result != 'Please, not divide by 0')? 'Error, Invalid Numbers': result;
     screen.textContent = result;
