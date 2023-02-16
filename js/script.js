@@ -84,15 +84,23 @@ const mathOperation = (number1, operator, number2) => {
 
 //     operationsOrdering(reducingArray)
 // }
-function reducingOneSign(array, sign) {
+const  reducingOneSign = (array, sign) => {
+    let justToCount = 0;
+    justToCount+=1;
     const len= array.length;
+    console.log('cuenta por conchetumare',justToCount, len);
+    
     const ps =array.indexOf(sign);
-    const num = mathOperation(array[ps-1], sign, array[ps+1]);
-    if(len == 1) { return; }
-    else if(ps == -1 ){ 
+    console.log('ps', ps)
+   
+    // if(len == 1) { return array; }
+    if(ps == -1 ){ 
         console.log('resultado de reducing', array, typeof array);
+        console.log('hostia tio, no envuelvo ni mierda', typeof array)
+        console.log(array[0]);
         return [...array]; 
     }
+    const num = mathOperation(array[ps-1], sign, array[ps+1]);
     console.log(num, 'dentro del signo' ,sign);
     console.log(array)
     console.log(array[0])
@@ -100,7 +108,8 @@ function reducingOneSign(array, sign) {
     console.log('ps', ps);
     const firstPart = [...array.splice(0, ps-1)];
     console.log('firstpart', firstPart);
-    const secondPart = [...array.slice(ps+2)];
+    const secondPart = [...array.splice(ps, len-1)];
+    console.log('segunda parte', secondPart);
 
     const resultado = [ ...firstPart, num, ...secondPart];
     console.log(resultado);
@@ -153,28 +162,23 @@ const operationsOrdering = (arr) => {
     let rest = []; 
     let len = arr.length;
 
-    console.log(len);
+    console.log('largo inicial de la verga', len);
     console.log('que vergas entra', arr, typeof arr, arr[0], arr[1]);
     console.log('con *')
 
-    
-        // multi = [...reducingOneSign([...arr], '*')];
-        // console.log('con /')
-        // div = [...reducingOneSign([...multi], '/')];
-        // console.log('con +')
-        // plus = [...reducingOneSign([...div], '+')];
-        // console.log('con -')
-        // rest = [...reducingOneSign([...plus], '-')];
-        // console.log(rest, 'rest');
-        // return rest;   
+    // plus = reducingOneSign([...arr], '+');
+    // return plus[0];
 
-
-        multi = reducingOneSign([...arr], '*');
+        multi = reducingOneSign(arr, '*');
+        console.log(multi, 'resultado de *');
         console.log('con /')
-        div = reducingOneSign([...multi], '/');
+        div = reducingOneSign(multi, '/');
+        console.log(div, 'resultado de /');
         console.log('con +')
-        plus = reducingOneSign([...div], '+');
-        console.log('con -', plus)
+        plus = reducingOneSign(div, '+');
+        console.log([...plus], 'resultado de +');
+        console.log('impresion final plus', plus);
+        console.log('con -', [...plus])
         rest = reducingOneSign([...plus], '-');
         console.log(rest, 'rest');
         return rest;   
@@ -274,7 +278,8 @@ equals.addEventListener("click", () => {
     // let result = (len <= 3)? ((number1 && operator && number2!=0)? controlDecimals(mathOperation(number1, operator, number2)): 'invalid operation'):
     //(operationsOrdering(Array.from(termsArray))[0]);
     const ArRaY = Array.from(termsArray);
-    let result = operationsOrdering(ArRaY)[0];
+    let result = operationsOrdering(ArRaY);
+    console.log('result', result)
     if(isNaN(result)){ screen.className= 'smaller_font';}
     screen.textContent = (isNaN(result) && result != 'Please, not divide by 0')? 'Error, Invalid Numbers': result;
     screen.textContent = result;
@@ -282,7 +287,7 @@ equals.addEventListener("click", () => {
     // console.log('screen_after_equals', screen.textContent);
     // console.log('number1_after_equals', number1);
     // console.log('number2_after_equals', number2);
-    console.log('terms array at equals', termsArray);
+    // console.log('terms array at equals', termsArray);
     // console.log('result', result);
 });
 
