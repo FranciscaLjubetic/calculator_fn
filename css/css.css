@@ -12,11 +12,25 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgb(40, 41, 40);
+    background-image: url('https://media.tenor.com/HuyCRpB260IAAAAC/geometry-abstract.gif');
+    background-size: cover;
     
 }
 
+header, footer{
+    font-family: "digital";
+    color: beige;
+    font-size: larger;
+}
+
 main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 11vh 0;
+}
+
+.container {
     padding: 18px;
     display: flex;
     flex-direction: column;
@@ -24,9 +38,9 @@ main {
     align-content: center;
     flex-wrap: wrap;
     width: 212px;
-    border: 2px solid black;
+    border: 0.5px solid rgb(249, 247, 247);
     border-radius: 5px;
-    background-color: rgb(214, 246, 223);
+    background: linear-gradient(45deg, rgba(110,113,113,1) 0%, rgba(201,188,202,1) 31%, rgba(213,225,225,1) 54%, rgba(215,238,237,1) 62%, rgba(198,200,201,1) 100%);
 }
 
 section {
@@ -41,12 +55,13 @@ button {
     border: 0.5px solid rgba(29, 29, 29, 0.28);
     margin: 2px 0;
     cursor: pointer;
+    font-family: "digital";
 }
 
 #screen {
     width: 210px;
     height: 50px;
-    border: 1px solid rgb(40, 38, 38);
+    border: 0.5px solid rgb(40, 38, 38);
     display: block;
     font-size: 33px;
     text-align: right;
@@ -55,13 +70,13 @@ button {
     font-family: "digital";
     box-sizing: border-box;
     padding: 8px;
-    /* overflow-x: scroll; */
+    overflow-x: scroll; 
 }
 
 #keyscreen {
     width: 210px;
     height: 34px;
-    border: 1px solid rgb(40, 38, 38);
+    border: 0.5px solid rgb(40, 38, 38);
     display: block;
     font-size: 15px;
     text-align: right;
@@ -71,19 +86,28 @@ button {
     box-sizing: border-box;
     padding: 8px;
     margin: 10px 0;
-    /* overflow-x: scroll; */
+    overflow-x:scroll; 
 }
 
 .purple {
     background-color: rgb(163, 2, 222);
 }
+.purple:active {
+    background-color: rgb(133, 2, 210);
+}
 
 .red {
     background-color: rgb(234, 0, 117);
 }
+.red:active {
+    background-color: rgb(251, 4, 45);
+}
 
 .yellow {
-    background-color: rgb(251, 147, 2);
+    background-color: rgb(251, 161, 2);
+}
+.yellow:active {
+    background-color: rgb(232, 136, 3);
 }
 
 #ac, #bs {
@@ -100,22 +124,24 @@ button {
     padding-top: 7% !important;
 }
 
-/* ::-webkit-scrollbar {
-    width: 5px 5px;
-  } */
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  } 
   
   /* Track */
-/* ::-webkit-scrollbar-track {
-background: rgba(84, 84, 84, 0.853);
+::-webkit-scrollbar-track {
+    background: rgba(106, 105, 105, 0.853);
 }
-   */
-  /* Handle */
-/* ::-webkit-scrollbar-thumb {
-background: #888;
-} */
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    width: 4px; 
+    background: #888;
+} 
   
 /* Handle on hover */
-/* ::-webkit-scrollbar-thumb:hover {
-background: #555;
-} */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
 

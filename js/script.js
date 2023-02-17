@@ -6,11 +6,12 @@ const keyscreen = document.getElementById('keyscreen');
 
 
 //check
-let inputsString = [];
+const inputsString = [];
 const termsArray = [];
 let operator;
 let number1;
 let number2;
+let GrandResult = 0;
 
 //check
 const isOperator = (element) => (element == '+'|| element == '-' || element == '/' || element == '*');
@@ -21,22 +22,22 @@ const rinseWell = () => screen.textContent = "";
 //check
 const controlDecimals = (num) => {
     if(num - Math.floor(num) != 0 && (num - Math.trunc(num)).toString().length > 8) {
-        return num.toFixed(7);
+        return  Number(num).toFixed(7);
     }
-    return num;
+    return Number(num);
 }
 
 // check//
 const reset = () => {
     let iS = inputsString.length
-    screen.className= '';
+    screen.className= '0';
     screen.textContent = '';
     keyscreen.textContent = '';
     operator = '';
     number1 = 0;
     number2 = 0;
-    inputsString=[];
-    termsArray.forEach(()=> termsArray.pop());
+    inputsString.forEach((it)=> inputsString.pop(it));
+    termsArray.forEach((it)=> termsArray.pop(it));
 };
 
 
@@ -62,152 +63,41 @@ const mathOperation = (number1, operator, number2) => {
     return result;
 }
 
+
 const  reducingOneSign = (array, sign) => {
-   
-    const len= [...array].length;
-    if(len <= 2) { console.log(len, 'len'); return [...array]; };
+    const len= array.length;
     const ps =array.indexOf(sign);
    
-    if(len <= 1 || ps == -1 || (typeof sign) == undefined){ 
+    if( ps == -1){ 
+        // const resultingArray = [];
+        // array.forEach((item) => resultingArray.push(item))
         console.log('hostia tio, no envuelvo ni mierda', 'len', len, array, typeof [...array])
-        const resultingArray = [];
-        array.forEach((item) => resultingArray.push(item))
-        console.log('resultadin', resultingArray, resultingArray[0])
-        
-        return  [...resultingArray]; 
-        
+        console.log( typeof array[0])
+        return array; 
     }
-    const num = mathOperation(array[ps-1], sign, array[ps+1]);
+
+    const num = Number(mathOperation(array[ps-1], sign, array[ps+1]));
     const firstPart = [...array.slice(0, ps-1)];
     const secondPart = [...array.slice(ps+2, len)];
-    const resultado = [...firstPart, num, ...secondPart];
+    const result = [...firstPart, num, ...secondPart];
 
-
-    console.log(num, 'dentro del signo' ,sign);
-    console.log('array', array);
-    console.log('ps', ps);
-    console.log('firstpart', firstPart);
-    console.log('segunda parte', secondPart);
-    console.log(resultado);
-
-    reducingOneSign([...resultado], sign);
-    
+    return reducingOneSign(result, sign);
 }
-
-const reduceSign = (array2, sign) => {
-    // const array = array2;
-    // const len= array.length;
-    // const ps =array.indexOf(sign);
-    // if(ps ==-1 || array2.length <=1) { console.log(len, 'len'); return array;}
-    
-    // const secondPart = [...array.slice(ps+2, len)];
-    // const num = mathOperation(array[ps-1], sign, array[ps+1]);
-    // const firstPart = [...array.slice(0, ps-1)];
-    // const resultado = [...firstPart, num, ...secondPart];
-    // reduceSign(resultado, sign)
-
-   
-    // const array = array2;
-    // const len= array.length;
-    // if(len <= 2) { console.log(len, 'len'); return; };
-    // const ps =array.indexOf(sign);
-   
-    // if(len <= 1 || ps == -1 || (typeof sign) == undefined){ 
-    //     console.log('hostia tio, no envuelvo ni mierda', 'len', len, array, typeof [...array])
-    //     const resultingArray = [];
-    //     array.forEach((item) => resultingArray.push(item))
-    //     console.log('resultadin', resultingArray, resultingArray[0])
-    //     return  resultingArray; 
-    // }
-    // const num = mathOperation(array[ps-1], sign, array[ps+1]);
-    // const firstPart = [...array.slice(0, ps-1)];
-    // const secondPart = [...array.slice(ps+2, len)];
-    // const resultado = [...firstPart, num, ...secondPart];
-
-
-    // console.log(num, 'dentro del signo' ,sign);
-    // console.log('array', array);
-    // console.log('ps', ps);
-    // console.log('firstpart', firstPart);
-    // console.log('segunda parte', secondPart);
-    // console.log(resultado);
-
-    // reduceSign(array, sign)
-
-    const array = array2;
-    const len= array.length;
-
-
-    const ps =array.indexOf(sign);
-    if(len <= 2 || ps == -1 || (typeof sign) == undefined) { console.log(len, 'len'); return array2;};
-    const versions = [];
-    while ( ps != -1){
-        const ps = array.indexOf(sign);
-        const num = mathOperation(array[ps-1], sign, array[ps+1]);
-        const firstPart = [...array.slice(0, ps-1)];
-        const secondPart = [...array.slice(ps+2, len)];
-        const resultado = [...firstPart, num, ...secondPart];
-        versions.push(resultado);
-        array = [...resultado]
-    }
-    
-
-
-    console.log(num, 'dentro del signo' ,sign);
-    console.log('array', array);
-    console.log('ps', ps);
-    console.log('firstpart', firstPart);
-    console.log('segunda parte', secondPart);
-    console.log(resultado);
-    return versions[ versions.length -1];
-
-}
-
-// const usingJavascriptPrecedenceItself = (array) => {
-    // eval is forbiden
-// }
 
 const operationsOrdering = (arr) => {
-    let multi = [];
-    let div = [];
-    let plus = []; 
-    let rest = []; 
-    let len = [...arr].length;
-    
-
-    console.log('largo inicial de la verga', len);
     console.log('que vergas entra', arr, typeof arr, arr[0], arr[1]);
-    // console.log('con *')
-    
-
-       rest = reducingOneSign([...arr], '+');
-        // rest = [...reducingOneSign([...reducingOneSign([...reducingOneSign([...reducingOneSign([...arr], '*')], "/")], '+')], '-')];
-        
-        console.log(rest, 'rest');
-        return rest;   
-
-        // multi = reducingOneSign([...arr], '*');
-        // console.log(multi, 'resultado de *');
-        // console.log('con /')
-        // div = reducingOneSign(multi, '/');
-        // console.log(div, 'resultado de /');
-        // console.log('con +')
-        // plus = [...reducingOneSign([...div], '+')];
-        // console.log(plus, 'resultado de +');
-        // console.log('impresion final plus', plus);
-        // console.log('con -', plus)
-        // rest = [...reducingOneSign([...plus], '-')];
-        // console.log(rest, 'rest');
-        // return [...rest];   
+    let rest = []; 
+   
+    rest = reducingOneSign(reducingOneSign(reducingOneSign(reducingOneSign([...arr], '/'), "*"), '-'), '+');
+    console.log(rest, 'resultado')
+    return rest[0];   
 }
-
-
-
 
  
 document.querySelectorAll('.yellow').forEach(button => {
     screen.className= '';
     button.addEventListener('click', () => {
+        //to avoid multiple 0s before the point
         if(screen.textContent == '0' && button.value == '0'){ return; }
         else{
             screen.textContent += button.value;
@@ -265,7 +155,7 @@ document.querySelectorAll('.purple').forEach(button => {
                 inputsString.push(button.value);
                 keyscreen.textContent =inputsString.join('');
 
-                console.log('terms array at operator', termsArray);
+                // console.log('terms array at operator', termsArray);
 
                 rinseWell();
             }
@@ -278,10 +168,9 @@ equals.addEventListener("click", () => {
     termsArray.push(number2);
     const len = termsArray.length
     // let result = (len <= 3)? ((number1 && operator && number2!=0)? controlDecimals(mathOperation(number1, operator, number2)): 'invalid operation'):
-    //(operationsOrdering(Array.from(termsArray))[0]);
-    const ArRaY = Array.from(termsArray);
-    let result = operationsOrdering(ArRaY);
-    console.log('result', result)
+    
+    let result = operationsOrdering(termsArray);
+    console.log('result', result, GrandResult)
     if(isNaN(result)){ screen.className= 'smaller_font';}
     screen.textContent = (isNaN(result) && result != 'Please, not divide by 0')? 'Error, Invalid Numbers': result;
     screen.textContent = result;
@@ -289,4 +178,8 @@ equals.addEventListener("click", () => {
 
 ac.addEventListener('click', () => reset());
 
-bs.addEventListener('click', () => screen.textContent =  screen.textContent.substring(0, screen.textContent.length - 1));
+bs.addEventListener('click', () => {
+    screen.textContent =  screen.textContent.substring(0, screen.textContent.length - 1);
+    termsArray.pop();
+    inputsString.pop();
+});
