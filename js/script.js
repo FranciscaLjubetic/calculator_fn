@@ -70,6 +70,7 @@ document.querySelectorAll('.yellow').forEach(button => {
     button.addEventListener('click', () => {
         if(result!=0 && inputsString.at(-2)== '='){ return; }
         if(screen.textContent == '0' && button.value == '0'){ return; }
+        if(screen.textContent.at(-1) == '.' && button.value == '.' ){ return; }
         if(screen.textContent == ':'){ 
             screen.textContent = button.value;
             inputsString.push(button.value);
