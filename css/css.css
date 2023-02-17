@@ -37,7 +37,7 @@ main {
     justify-content: center;
     align-content: center;
     flex-wrap: wrap;
-    width: 212px;
+    width: 220px;
     border: 0.5px solid rgb(249, 247, 247);
     border-radius: 5px;
     background: linear-gradient(45deg, rgba(110,113,113,1) 0%, rgba(201,188,202,1) 31%, rgba(213,225,225,1) 54%, rgba(215,238,237,1) 62%, rgba(198,200,201,1) 100%);
@@ -49,8 +49,8 @@ section {
 }
 
 button {
-    width: 50px;
-    height: 50px;
+    width: 52px;
+    height: 52px;
     color: white;
     border: 0.5px solid rgba(29, 29, 29, 0.28);
     margin: 2px 0;
@@ -59,11 +59,11 @@ button {
 }
 
 #screen {
-    width: 210px;
-    height: 50px;
+    width: 220px;
+    height: 54px;
     border: 0.5px solid rgb(40, 38, 38);
     display: block;
-    font-size: 33px;
+    font-size: 30px;
     text-align: right;
     border-radius: 2px;
     background-color: rgba(84, 84, 84, 0.853);
@@ -74,7 +74,7 @@ button {
 }
 
 #keyscreen {
-    width: 210px;
+    width: 220px;
     height: 34px;
     border: 0.5px solid rgb(40, 38, 38);
     display: block;

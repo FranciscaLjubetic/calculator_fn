@@ -9,7 +9,7 @@
 - It respects mathematical precedence of operators.
 
 > This is the last Brainnest 
->  Frontend Internship Assignment.
+> Frontend Internship Assignment.
 > It is a simple calculator inside which
 > we should apply all the things
 > Branko Popovic kindly taught us.

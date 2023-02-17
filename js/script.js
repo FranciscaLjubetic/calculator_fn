@@ -5,21 +5,16 @@ const screen = document.getElementById('screen');
 const keyscreen = document.getElementById('keyscreen');
 
 
-//check
 const inputsString = [];
 const termsArray = [];
 let operator;
 let number1;
 let number2;
-let GrandResult = 0;
 
-//check
 const isOperator = (element) => (element == '+'|| element == '-' || element == '/' || element == '*');
 
-//check
 const rinseWell = () => screen.textContent = "";
 
-//check
 const controlDecimals = (num) => {
     if(num - Math.floor(num) != 0 && (num - Math.trunc(num)).toString().length > 8) {
         return  Number(num).toFixed(7);
@@ -27,21 +22,6 @@ const controlDecimals = (num) => {
     return Number(num);
 }
 
-// check//
-const reset = () => {
-    let iS = inputsString.length
-    screen.className= '0';
-    screen.textContent = '';
-    keyscreen.textContent = '';
-    operator = '';
-    number1 = 0;
-    number2 = 0;
-    inputsString.forEach((it)=> inputsString.pop(it));
-    termsArray.forEach((it)=> termsArray.pop(it));
-};
-
-
-// check//
 const mathOperation = (number1, operator, number2) => {
     let result;
     switch (operator) {
@@ -69,28 +49,23 @@ const  reducingOneSign = (array, sign) => {
     const ps =array.indexOf(sign);
    
     if( ps == -1){ 
-        // const resultingArray = [];
-        // array.forEach((item) => resultingArray.push(item))
-        console.log('hostia tio, no envuelvo ni mierda', 'len', len, array, typeof [...array])
-        console.log( typeof array[0])
         return array; 
     }
 
-    const num = Number(mathOperation(array[ps-1], sign, array[ps+1]));
-    const firstPart = [...array.slice(0, ps-1)];
-    const secondPart = [...array.slice(ps+2, len)];
-    const result = [...firstPart, num, ...secondPart];
-
-    return reducingOneSign(result, sign);
+    const num = mathOperation(array[ps-1], sign, array[ps+1]);
+    if(sign == '/' && array[ps+1] == 0) { return num; }
+    else { 
+        const firstPart = [...array.slice(0, ps-1)];
+        const secondPart = [...array.slice(ps+2, len)];
+        const result = [...firstPart, Number(num), ...secondPart];
+        return reducingOneSign(result, sign);
+    }
 }
 
 const operationsOrdering = (arr) => {
     console.log('que vergas entra', arr, typeof arr, arr[0], arr[1]);
-    let rest = []; 
-   
-    rest = reducingOneSign(reducingOneSign(reducingOneSign(reducingOneSign([...arr], '/'), "*"), '-'), '+');
     console.log(rest, 'resultado')
-    return rest[0];   
+    return reducingOneSign(reducingOneSign(reducingOneSign(reducingOneSign([...arr], '/'), "*"), '-'), '+');  
 }
 
  
@@ -166,20 +141,25 @@ equals.addEventListener("click", () => {
     screen.className= '';
     number2 = Number(screen.textContent);
     termsArray.push(number2);
-    const len = termsArray.length
-    // let result = (len <= 3)? ((number1 && operator && number2!=0)? controlDecimals(mathOperation(number1, operator, number2)): 'invalid operation'):
-    
     let result = operationsOrdering(termsArray);
-    console.log('result', result, GrandResult)
     if(isNaN(result)){ screen.className= 'smaller_font';}
-    screen.textContent = (isNaN(result) && result != 'Please, not divide by 0')? 'Error, Invalid Numbers': result;
     screen.textContent = result;
 });
 
-ac.addEventListener('click', () => reset());
+ac.addEventListener('click', () => {
+    inputsString.forEach((it) => inputsString.shift(it));
+    termsArray.forEach((it) => termsArray.shift(it));
+    operator = '';
+    number1 = 0;
+    number2 = 0;
+    keyscreen.textContent ='';
+    screen.textContent =  '';
+    window.location.reload()});
 
 bs.addEventListener('click', () => {
-    screen.textContent =  screen.textContent.substring(0, screen.textContent.length - 1);
-    termsArray.pop();
     inputsString.pop();
+    screen.textContent =  screen.textContent.substring(0, screen.textContent.length - 1);
+    keyscreen.textContent =inputsString.join('');
+    termsArray.pop();
+
 });
