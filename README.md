@@ -7,6 +7,9 @@
 - It´s is possible to concatenate as many terms as required
 - It always consider n numbers and n-1 operators, after click was pressed.
 - It respects mathematical precedence of operators.
+- It is possible to correct a number only before clicking an operator.
+- A number can start with a dot.
+
 
 > This is the last Brainnest 
 > Frontend Internship Assignment.

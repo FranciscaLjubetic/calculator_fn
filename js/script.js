@@ -35,7 +35,7 @@ const mathOperation = (number1, operator, number2) => {
             break;
         case '/':
             result = (number2 != 0)? controlDecimals(number1 / number2): 
-                    'Please, do not divide by 0';
+                'Please, do not divide by 0';
             break;
         default:
             result = 'Please, right operators';
@@ -166,9 +166,12 @@ ac.addEventListener('click', () => {
     window.location.reload()});
 
 bs.addEventListener('click', () => {
-    if(inputsString.at(-1).indexOf('=') !=-1) { return; }
+    if(inputsString.at(-1).indexOf('=') !=-1 || 
+        inputsString.at(-2).indexOf('=') !=-1 ||
+            isOperator(inputsString.at(-1))
+        ) { return; }
     inputsString.pop();
-    termsArray.pop();
+    // termsArray.pop();
     screen.textContent =  screen.textContent.substring(0, screen.textContent.length - 1);
     keyscreen.textContent =inputsString.join('');
 });
