@@ -91,7 +91,8 @@ document.querySelectorAll('.yellow').forEach(button => {
 document.querySelectorAll('.purple').forEach(button => {
         screen.className= '';
         button.addEventListener('click', () => {
-            termsArray.push(button.value);
+            //segunda gran diferencia, no se por cual razon, le vuelvo a pushear resultados a termsArray
+            //termsArray.push(button.value);
             // if(result!=0 && typeof result == Number){
             //     console.log('before' , termsArray);
 
@@ -160,7 +161,7 @@ equals.addEventListener("click", () => {
     let result = operationsOrdering(termsArray);
     if(isNaN(result)){ screen.className= 'smaller_font';}
     screen.textContent = result;
-    // keyscreen.textContent += '=' + result;
+    keyscreen.textContent += '=';
     console.log('termsarray al igual', termsArray);
     console.log('inputsString al igual', inputsString);
 });
