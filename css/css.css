@@ -9,84 +9,116 @@
 body {
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: rgba(34, 33, 33, 0.853);
+    
+}
+
+header, footer{
+    font-family: "digital";
+    color: rgb(251, 161, 2);
+    
+}
+
+header {
+    font-size: 2rem;
 }
 
 main {
-    padding: 30px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 11vh 0;
+}
+
+.container {
+    padding: 18px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
     flex-wrap: wrap;
-    width: 215px;
-    border: 2px solid black;
-    background-color: rgb(10, 166, 52);
+    width: 220px;
+    border: 0.5px solid rgb(249, 247, 247);
+    border-radius: 5px;
+    background: linear-gradient(45deg, rgba(110,113,113,1) 0%, rgba(201,188,202,1) 31%, rgba(213,225,225,1) 54%, rgba(215,238,237,1) 62%, rgba(198,200,201,1) 100%);
 }
 
 section {
     flex: 1;
-    padding-bottom: 10px;
+    color:beige;
 }
 
 button {
-    width: 50px;
-    height: 50px;
+    width: 52px;
+    height: 52px;
     color: white;
-    border: 1px solid black;
-    margin: 3px 0;
+    border: 0.5px solid rgba(29, 29, 29, 0.28);
+    margin: 2px 0;
     cursor: pointer;
+    font-family: "digital";
 }
 
 #screen {
-    width: 210px;
-    height: 50px;
-    border: 2px solid black;
+    width: 220px;
+    height: 54px;
+    border: 0.5px solid rgb(40, 38, 38);
     display: block;
-    font-size: 33px;
+    font-size: 30px;
     text-align: right;
-    border-radius: 10px;
+    border-radius: 2px;
     background-color: rgba(84, 84, 84, 0.853);
     font-family: "digital";
     box-sizing: border-box;
     padding: 8px;
-    overflow-x: scroll;
+    overflow-x: scroll; 
 }
 
 #keyscreen {
-    width: 210px;
+    width: 220px;
     height: 34px;
-    border: 2px solid rgb(40, 38, 38);
+    border: 0.5px solid rgb(40, 38, 38);
     display: block;
     font-size: 15px;
     text-align: right;
-    border-radius: 10px;
+    border-radius: 2px;
     background-color: rgba(124, 117, 117, 0.853);
     font-family: "digital";
     box-sizing: border-box;
     padding: 8px;
     margin: 10px 0;
-    overflow-x: scroll;
+    overflow-x:scroll; 
 }
 
 .purple {
-    background-color: rgb(105, 50, 156);
+    background-color: rgb(163, 2, 222);
+}
+.purple:active {
+    background-color: rgb(133, 2, 210);
 }
 
 .red {
-    background-color: rgb(147, 10, 104);
+    background-color: rgb(234, 0, 117);
+}
+.red:active {
+    background-color: rgb(251, 4, 45);
 }
 
 .yellow {
-    background-color: rgb(209, 128, 14);
+    background-color: rgb(251, 161, 2);
+}
+.yellow:active {
+    background-color: rgb(232, 136, 3);
 }
 
 #ac, #bs {
     width: 50px;
-    height: 25px;
-    color: rgb(19, 18, 18);
-    border: 1px solid black;
+    height: 30px;
+    border-radius: 3px;
+    color: rgb(125, 5, 169);
+    border: 1px solid rgb(189, 189, 189);
 }
 
 .smaller_font{
@@ -96,21 +128,23 @@ button {
 }
 
 ::-webkit-scrollbar {
-    width: 5px 5px;
-  }
+    width: 4px;
+    height: 4px;
+  } 
   
   /* Track */
 ::-webkit-scrollbar-track {
-background: rgba(84, 84, 84, 0.853);
+    background: rgba(106, 105, 105, 0.853);
 }
-  
-  /* Handle */
+
+/* Handle */
 ::-webkit-scrollbar-thumb {
-background: #888;
-}
+    width: 4px; 
+    background: #888;
+} 
   
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-background: #555;
+    background: #555;
 }
 
