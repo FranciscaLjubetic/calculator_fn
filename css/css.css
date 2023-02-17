@@ -12,6 +12,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: rgba(34, 33, 33, 0.853);
     /* background-image: url('https://media.tenor.com/HuyCRpB260IAAAAC/geometry-abstract.gif');
     background-size: cover; */
     
@@ -19,8 +20,12 @@ body {
 
 header, footer{
     font-family: "digital";
-    color: beige;
-    font-size: larger;
+    color: rgb(251, 161, 2);
+    
+}
+
+header {
+    font-size: 2rem;
 }
 
 main {

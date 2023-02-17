@@ -4,7 +4,6 @@ const bs = document.getElementById('bs');
 const screen = document.getElementById('screen');
 const keyscreen = document.getElementById('keyscreen');
 
-
 const inputsString = [];
 const termsArray = [];
 let operator;
@@ -12,9 +11,8 @@ let number1;
 let number2;
 let result = 0;
 
-const isOperator = (element) => (element == '+'|| element == '-' || element == '/' || element == '*');
-
-const rinseWell = () => screen.textContent = "";
+const isOperator = (element) => (element == '+'|| element == '-' ||
+                                    element == '/' || element == '*');
 
 const controlDecimals = (num) => {
     if(num - Math.floor(num) != 0 && (num - Math.trunc(num)).toString().length > 8) {
@@ -48,14 +46,10 @@ const mathOperation = (number1, operator, number2) => {
 const  reducingOneSign = (array, sign) => {
     const len= array.length;
     const ps =array.indexOf(sign);
-   
-    if( ps == -1){ 
-        return array; 
-    }
+    if( ps == -1){ return array; }
 
     const num = mathOperation(array[ps-1], sign, array[ps+1]);
     if(sign == '/' && array[ps+1] == 0) { return num; }
-
     else { 
         const firstPart = [...array.slice(0, ps-1)];
         const secondPart = [...array.slice(ps+2, len)];
@@ -74,7 +68,6 @@ const operationsOrdering = (arr) => {
 document.querySelectorAll('.yellow').forEach(button => {
     screen.className= '';
     button.addEventListener('click', () => {
-        //to avoid multiple 0s before the point
         if(screen.textContent == '0' && button.value == '0'){ return; }
         if(screen.textContent == 'Hi'){ 
             screen.textContent = button.value;
@@ -83,7 +76,6 @@ document.querySelectorAll('.yellow').forEach(button => {
         else{
             screen.textContent += button.value;
             inputsString.push(button.value);
-            // 1 diferencia importante: no concatenamos, que sea solo input string
             keyscreen.textContent =inputsString.join('');
         }
 })});
@@ -91,8 +83,6 @@ document.querySelectorAll('.yellow').forEach(button => {
 document.querySelectorAll('.purple').forEach(button => {
         screen.className= '';
         button.addEventListener('click', () => {
-            //segunda gran diferencia, no se por cual razon, le vuelvo a pushear resultados a termsArray
-            //termsArray.push(button.value);
             if(result!=0 && typeof result == Number){
                 termsArray.length= 0;
                 inputsString.lenght = 0;
@@ -117,12 +107,10 @@ document.querySelectorAll('.purple').forEach(button => {
                     termsArray.push(button.value);
                     inputsString.push(button.value);
                     keyscreen.textContent =inputsString.join('');
-                    rinseWell();
+                    screen.textContent = "";
                 }
                 
             } else if( button.value == '+'){
-                console.log('my prev screen with +', inputsString.at(-1));
-                console.log('-1', inputsString.at(-1));
                 if(!isOperator(inputsString.at(-1))) {
                     number1 = Number(screen.textContent);
                     termsArray.push(number1);
@@ -132,7 +120,7 @@ document.querySelectorAll('.purple').forEach(button => {
                     console.log('aqui borro el igual if operator')
                     console.log('inpustring aqui', inputsString, termsArray);
                     keyscreen.textContent =inputsString.join('');
-                    rinseWell();
+                    screen.textContent = "";
                 } else {
                     screen.textContent = screen.textContent 
                     inputsString.push();
@@ -147,7 +135,7 @@ document.querySelectorAll('.purple').forEach(button => {
                 termsArray.push(operator);
                 inputsString.push(button.value);
                 keyscreen.textContent =inputsString.join('');
-                rinseWell();
+                screen.textContent = "";
             }
     })});
 
