@@ -70,7 +70,7 @@ document.querySelectorAll('.yellow').forEach(button => {
     screen.className= '';
     button.addEventListener('click', () => {
         if(screen.textContent == '0' && button.value == '0'){ return; }
-        if(screen.textContent == 'Hi'){ 
+        if(screen.textContent == ':'){ 
             screen.textContent = button.value;
             inputsString.push(button.value);
             keyscreen.textContent =inputsString.join(''); }
@@ -80,6 +80,7 @@ document.querySelectorAll('.yellow').forEach(button => {
             keyscreen.textContent =inputsString.join('');
         }
 })});
+
 
 document.querySelectorAll('.purple').forEach(button => {
         screen.className= '';
@@ -94,7 +95,7 @@ document.querySelectorAll('.purple').forEach(button => {
             if(button.value == '-'){
                 if(screen.textContent.length == 0 ||
                     screen.textContent == '' || 
-                    screen.textContent == 'Hi' ||
+                    screen.textContent == ':' ||
                     isOperator(screen.textContent.charAt(-1))
                     ){ 
                     screen.textContent = button.value 
@@ -155,15 +156,7 @@ equals.addEventListener("click", () => {
     termsArray.length = 0;
 });
 
-ac.addEventListener('click', () => {
-    // inputsString.length = 0;
-    // termsArray.length = 0;
-    // operator = '';
-    // number1 = 0;
-    // number2 = 0;
-    // keyscreen.textContent ='';
-    // screen.textContent =  '';
-    window.location.reload()});
+ac.addEventListener('click', () => { window.location.reload()});
 
 bs.addEventListener('click', () => {
     if(inputsString.at(-1).indexOf('=') !=-1 || 
@@ -171,7 +164,6 @@ bs.addEventListener('click', () => {
             isOperator(inputsString.at(-1))
         ) { return; }
     inputsString.pop();
-    // termsArray.pop();
     screen.textContent =  screen.textContent.substring(0, screen.textContent.length - 1);
     keyscreen.textContent =inputsString.join('');
 });

@@ -59,6 +59,7 @@ button {
     margin: 2px 0;
     cursor: pointer;
     font-family: "digital";
+    font-size: large;
 }
 
 #screen {
@@ -115,11 +116,14 @@ button {
 
 #ac, #bs {
     width: 50px;
-    height: 30px;
+    height: 35px;
     border-radius: 3px;
     color: rgb(125, 5, 169);
-    border: 1px solid rgb(189, 189, 189);
+    border: 1px solid rgb(174, 173, 173);
+    background-color: rgb(197, 197, 190);
+    line-height: 1rem !important;
 }
+
 
 .smaller_font{
     font-size: 19px !important;
