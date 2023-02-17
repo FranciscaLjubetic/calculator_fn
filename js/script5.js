@@ -1,69 +1,3 @@
-const equals = document.getElementById('equals');
-const ac = document.getElementById('ac');
-const bs = document.getElementById('bs');
-const screen = document.getElementById('screen');
-const keyscreen = document.getElementById('keyscreen');
-
-
-const inputsString = [];
-const termsArray = [];
-let operator;
-let number1;
-let number2;
-let result = 0;
-
-const isOperator = (element) => (element == '+'|| element == '-' || element == '/' || element == '*');
-
-const rinseWell = () => screen.textContent = "";
-
-const controlDecimals = (num) => {
-    if(num - Math.floor(num) != 0 && (num - Math.trunc(num)).toString().length > 8) {
-        return  Number(num).toFixed(7);
-    }
-    return Number(num);
-}
-
-const mathOperation = (number1, operator, number2) => {
-    let result;
-    switch (operator) {
-        case '+':
-            result = controlDecimals(number1 + number2);
-            break;
-        case '-':
-            result = controlDecimals(number1 - number2);
-            break;
-        case '*':
-            result = controlDecimals(number1 * number2);
-            break;
-        case '/':
-            result = (number2 != 0)? controlDecimals(number1 / number2): 'Please, do not divide by 0';
-            break;
-        default:
-            result = 'Please, right operators';
-      }
-    return result;
-}
-
-
-const  reducingOneSign = (array, sign) => {
-    const len= array.length;
-    const ps =array.indexOf(sign);
-   
-    if( ps == -1){ 
-        return array; 
-    }
-
-    const num = mathOperation(array[ps-1], sign, array[ps+1]);
-    if(sign == '/' && array[ps+1] == 0) { return num; }
-
-    else { 
-        const firstPart = [...array.slice(0, ps-1)];
-        const secondPart = [...array.slice(ps+2, len)];
-        const loopResult = [...firstPart, Number(num), ...secondPart];
-        return reducingOneSign(loopResult, sign);
-    }
-}
-
 const operationsOrdering = (arr) => {
     console.log('que vergas entra', arr, typeof arr, arr[0], arr[1]);
     result = reducingOneSign(reducingOneSign(reducingOneSign(reducingOneSign([...arr], '/'), "*"), '-'), '+'); 
@@ -83,7 +17,6 @@ document.querySelectorAll('.yellow').forEach(button => {
         else{
             screen.textContent += button.value;
             inputsString.push(button.value);
-            // 1 diferencia importante: no concatenamos, que sea solo input string
             keyscreen.textContent =inputsString.join('');
         }
 })});
@@ -91,7 +24,6 @@ document.querySelectorAll('.yellow').forEach(button => {
 document.querySelectorAll('.purple').forEach(button => {
         screen.className= '';
         button.addEventListener('click', () => {
-            termsArray.push(button.value);
             // if(result!=0 && typeof result == Number){
             //     console.log('before' , termsArray);
 
@@ -160,7 +92,7 @@ equals.addEventListener("click", () => {
     let result = operationsOrdering(termsArray);
     if(isNaN(result)){ screen.className= 'smaller_font';}
     screen.textContent = result;
-    // keyscreen.textContent += '=' + result;
+    keyscreen.textContent += '=' + result;
     console.log('termsarray al igual', termsArray);
     console.log('inputsString al igual', inputsString);
 });
