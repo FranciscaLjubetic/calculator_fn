@@ -12,13 +12,11 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgba(34, 33, 33, 0.853);
-    
+    background-color: rgba(5, 5, 5, 0.853); 
 }
 
 header, footer{
     color: rgb(251, 161, 2);
-    
 }
 
 header {

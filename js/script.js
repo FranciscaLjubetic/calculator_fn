@@ -60,7 +60,6 @@ const  reducingOneSign = (array, sign) => {
 }
 
 const operationsOrdering = (arr) => {
-    console.log('que vergas entra', arr, typeof arr, arr[0], arr[1]);
     result = reducingOneSign(reducingOneSign(reducingOneSign(reducingOneSign([...arr], '/'), "*"), '-'), '+'); 
     return result;
 }
@@ -69,6 +68,7 @@ const operationsOrdering = (arr) => {
 document.querySelectorAll('.yellow').forEach(button => {
     screen.className= '';
     button.addEventListener('click', () => {
+        if(result!=0 && inputsString.at(-2)== '='){ return; }
         if(screen.textContent == '0' && button.value == '0'){ return; }
         if(screen.textContent == ':'){ 
             screen.textContent = button.value;
@@ -86,11 +86,9 @@ document.querySelectorAll('.purple').forEach(button => {
         screen.className= '';
         button.addEventListener('click', () => {
             if(result!=0 && typeof result == Number){
-                termsArray.length= 0;
                 inputsString.lenght = 0;
                 termsArray.push(result);
-                inputsString.push(result);
-                keyscreen.textContent += '=' + inputsString.join('');
+                keyscreen.textContent += '=' + result;
             }
             if(button.value == '-'){
                 if(screen.textContent.length == 0 ||
@@ -119,15 +117,12 @@ document.querySelectorAll('.purple').forEach(button => {
                     operator= button.value;
                     termsArray.push(operator);
                     inputsString.push(button.value);
-                    console.log('aqui borro el igual if operator')
-                    console.log('inpustring aqui', inputsString, termsArray);
                     keyscreen.textContent =inputsString.join('');
                     screen.textContent = "";
                 } else {
                     screen.textContent = screen.textContent 
                     inputsString.push();
                     keyscreen.textContent =inputsString.join('');
-                    console.log('aqui borro el igual else operator')
                 }
             }
             else {
