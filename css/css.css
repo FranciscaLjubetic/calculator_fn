@@ -17,12 +17,12 @@ body {
 }
 
 header, footer{
-    font-family: "digital";
     color: rgb(251, 161, 2);
     
 }
 
 header {
+    font-family: "digital";
     font-size: 2rem;
 }
 
@@ -70,7 +70,7 @@ button {
     font-size: 30px;
     text-align: right;
     border-radius: 2px;
-    background-color: rgba(84, 84, 84, 0.853);
+    background-color: rgba(28, 27, 27, 0.853);
     font-family: "digital";
     box-sizing: border-box;
     padding: 8px;
@@ -80,16 +80,16 @@ button {
 #keyscreen {
     width: 220px;
     height: 34px;
-    border: 0.5px solid rgb(40, 38, 38);
+    border: 0.5px solid rgb(42, 41, 41);
     display: block;
     font-size: 15px;
     text-align: right;
     border-radius: 2px;
-    background-color: rgba(124, 117, 117, 0.853);
+    background-color:  rgba(28, 27, 27, 0.853);
     font-family: "digital";
     box-sizing: border-box;
     padding: 8px;
-    margin: 10px 0;
+    margin: 1px 0px 5px 0px;
     overflow-x:scroll; 
 }
 
@@ -138,7 +138,7 @@ button {
   
   /* Track */
 ::-webkit-scrollbar-track {
-    background: rgba(106, 105, 105, 0.853);
+    background: rgba(62, 61, 61, 0.853);
 }
 
 /* Handle */
