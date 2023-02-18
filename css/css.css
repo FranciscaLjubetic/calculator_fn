@@ -50,11 +50,11 @@ section {
 }
 
 button {
-    width: 52px;
-    height: 52px;
+    width: 51.5px;
+    height: 51.5px;
     color: white;
     border: 0.5px solid rgba(29, 29, 29, 0.28);
-    margin: 2px 0;
+    margin: 1.5px 0;
     cursor: pointer;
     font-family: "digital";
     font-size: large;
