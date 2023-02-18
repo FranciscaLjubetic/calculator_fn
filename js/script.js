@@ -48,10 +48,11 @@ const  reducingOneSign = (array, sign) => {
     const len= array.length;
     const ps =array.indexOf(sign);
     if( ps == -1){ return array; }
-
     const num = mathOperation(array[ps-1], sign, array[ps+1]);
+    
     if(sign == '/' && array[ps+1] == 0) { return num; }
     else { 
+        console.log('termsArray verga', termsArray);
         const firstPart = [...array.slice(0, ps-1)];
         const secondPart = [...array.slice(ps+2, len)];
         const loopResult = [...firstPart, Number(num), ...secondPart];
@@ -86,6 +87,8 @@ document.querySelectorAll('.yellow').forEach(button => {
 document.querySelectorAll('.purple').forEach(button => {
         screen.className= '';
         button.addEventListener('click', () => {
+            if( keyscreen.textContent != '' && isOperator(keyscreen.textContent.at(-1)) && isOperator(keyscreen.textContent.at(-2))){ 
+                return 'Invalid Operation'; }
             if(result!=0 && typeof result == Number){
                 inputsString.lenght = 0;
                 termsArray.push(result);
@@ -95,7 +98,7 @@ document.querySelectorAll('.purple').forEach(button => {
                 if(screen.textContent.length == 0 ||
                     screen.textContent == '' || 
                     screen.textContent == ':' ||
-                    isOperator(screen.textContent.charAt(-1))
+                    isOperator(screen.textContent.at(-1))
                     ){ 
                     screen.textContent = button.value 
                     inputsString.push(button.value);
@@ -112,7 +115,7 @@ document.querySelectorAll('.purple').forEach(button => {
                 }
                 
             } else if( button.value == '+'){
-                if(!isOperator(inputsString.at(-1))) {
+                if(!isOperator(inputsString.at(-1)) && keyscreen.textContent!= '') {
                     number1 = Number(screen.textContent);
                     termsArray.push(number1);
                     operator= button.value;
@@ -125,8 +128,9 @@ document.querySelectorAll('.purple').forEach(button => {
                     inputsString.push();
                     keyscreen.textContent =inputsString.join('');
                 }
-            }
-            else {
+            } 
+            else if (button.value == '*' || button.value == '/'){
+                if (keyscreen.textContent == '' || keyscreen.textContent.at(-1) == button.value) { return; }
                 number1 = Number(screen.textContent);
                 termsArray.push(number1);
                 operator= button.value;
